@@ -23,7 +23,6 @@ sudo make install
 	NumPy (>= 1.6.1),
 	SciPy (>= 0.9).
 
-* Installing scikit-learn
 ```
 pip install -U scikit-learn
 ```
