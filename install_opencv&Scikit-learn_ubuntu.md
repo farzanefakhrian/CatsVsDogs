@@ -1,11 +1,11 @@
 #install opencv 
 
 
-*download opencv2.4.11 
+* download opencv2.4.11 
 ```
 http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.11/
 ```
-*unzip opencv.2.4.11
+* unzip opencv.2.4.11
 ```
 sudo su
 cd opencv.2.4.11
@@ -18,12 +18,12 @@ sudo make install
 
 #install Scikit-learn
 
-*Scikit-learn requires:
+* Scikit-learn requires:
 	Python (>= 2.6 or >= 3.3),
 	NumPy (>= 1.6.1),
 	SciPy (>= 0.9).
 
-*Installing scikit-learn
+* Installing scikit-learn
 ```
 pip install -U scikit-learn
 ```
