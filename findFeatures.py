@@ -1,5 +1,8 @@
 #!/usr/local/bin/python2.7
 
+
+import sys
+sys.path.append('/opt/ros/hydro/lib/python2.7/dist-packages')
 import argparse as ap
 import cv2
 import imutils 
@@ -42,7 +45,8 @@ for image_path in image_paths:
     im = cv2.imread(image_path)
     kpts = fea_det.detect(im)
     kpts, des = des_ext.compute(im, kpts)
-    des_list.append((image_path, des))   
+    des_list.append((image_path, des))
+    del im   
     
 # Stack all the descriptors vertically in a numpy array
 descriptors = des_list[0][1]

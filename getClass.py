@@ -1,5 +1,8 @@
 #!/usr/local/bin/python2.7
 
+
+import sys
+sys.path.append('/opt/ros/hydro/lib/python2.7/dist-packages')
 import argparse as ap
 import cv2
 import imutils 
@@ -29,10 +32,9 @@ if args["testingSet"]:
     except OSError:
         print "No such directory {}\nCheck if the file exists".format(test_path)
         exit()
-    for testing_name in testing_names:
-        dir = os.path.join(test_path, testing_name)
-        class_path = imutils.imlist(dir)
-        image_paths+=class_path
+
+    class_path = imutils.imlist(test_path)
+    image_paths+=class_path
 else:
     image_paths = [args["image"]]
     
@@ -45,9 +47,9 @@ des_list = []
 
 for image_path in image_paths:
     im = cv2.imread(image_path)
-    if im == None:
-        print "No such file {}\nCheck if the file exists".format(image_path)
-        exit()
+    # if im == None:
+    #     print "No such file {}\nCheck if the file exists".format(image_path)
+    #     exit()
     kpts = fea_det.detect(im)
     kpts, des = des_ext.compute(im, kpts)
     des_list.append((image_path, des))   
@@ -73,6 +75,16 @@ test_features = stdSlr.transform(test_features)
 
 # Perform the predictions
 predictions =  [classes_names[i] for i in clf.predict(test_features)]
+
+cats = 0
+dogs = 0
+for prediction in predictions:
+    if prediction == 'cat':
+        cats += 1
+    if prediction == 'dog':
+        dogs += 1
+print(cats)
+print(dogs)
 
 # Visualize the results, if "visualize" flag set to true by the user
 if args["visualize"]:
